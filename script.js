@@ -8,15 +8,9 @@ const rows = Math.floor(board.clientHeight/blockHeight);
 const blocks = [];
 const snake = [{
         x:1,
-        y:4,
-},{
-        x:1,
-        y:3,
-},{
-        x:1,
-        y:2,
-    }];
-
+        y:5,
+}];
+let direction ="down";
 
 // Create grid dynamically and visually represent blocks
 for(let row = 0; row < rows; row++){
@@ -31,10 +25,41 @@ for(let row = 0; row < rows; row++){
 
 function renderSnake(){
     snake.forEach(segment=>{
-        blocks[`${segment.x}-${segment.y}`].classList.add("fill")
+        blocks[`${segment.x}-${segment.y}`].classList.add("fill");
     })
 }
 
-setTimeout(() => {
+setInterval(() => {
+    let head = null;
+    if(direction === "left"){
+        head ={x: snake[0].x, y: snake[0].y - 1};
+    }else if(direction === "right"){
+        head ={x: snake[0].x, y: snake[0].y + 1};
+    }else if(direction==="down"){
+        head ={x: snake[0].x + 1, y: snake[0].y};
+    }else if(direction==="up"){
+        head ={x: snake[0].x - 1, y: snake[0].y};
+    }
+
+    snake.forEach(segment=>{
+        blocks[`${segment.x}-${segment.y}`].classList.remove("fill");
+    })
+
+    snake.unshift(head);
+    snake.pop();
+
     renderSnake();
-}, 300);
+},300);
+
+
+addEventListener("keydown",(event)=>{
+    if(event.key === "ArrowUp"){
+        direction = "up";
+    }else if(event.key === "ArrowDown"){
+        direction = "down";
+    }else if(event.key === "ArrowLeft"){
+        direction = "left";
+    }else if(event.key === "ArrowRight"){
+        direction = "right";
+    }
+})
