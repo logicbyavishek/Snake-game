@@ -28,7 +28,7 @@ body {
     --space-3xl: 48px;
 
     /* Border color */
-    --border-color: #f1f1f1;
+    --border-color: #7c7c7c;
 
     /* Border Radius */
     --border-radius-sm: 4px;
@@ -52,7 +52,11 @@ section{
 }
 
 section{
+    height: 100%;
     padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
 }
 
 section .infos{
@@ -65,4 +69,19 @@ section .infos{
     padding: var(--space-sm) var(--space-md);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
+}
+
+.board{
+    border: 1px solid var(--border-color);
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(30px,1fr));
+    grid-template-rows: repeat(auto-fill,minmax(30px,1fr));
+    overflow: hidden;
+}
+
+.block{
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border-color);
 }
