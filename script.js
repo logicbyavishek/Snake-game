@@ -49,6 +49,7 @@ function renderSnake(){
         blocks[`${food.x}-${food.y}`].classList.remove("food");
         food = {x:Math.floor(Math.random()*rows), y:Math.floor(Math.random()*cols)};
         blocks[`${food.x}-${food.y}`].classList.add("food");
+        snake.unshift(head);
     }
 
     snake.forEach(segment=>{
