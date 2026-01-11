@@ -88,3 +88,7 @@ section .infos{
 .fill{
     background-color: var(--snake-color);
 }
+
+.food{
+    background-color: var(--food-color);
+}
