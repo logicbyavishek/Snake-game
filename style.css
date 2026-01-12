@@ -38,6 +38,9 @@ body {
     --border-radius-xl: 16px;
     --border-radius-2xl: 24px;
     --border-radius-3xl: 32px;
+
+    /* Cell Size */
+    --cell-size: 50px;
 }
 
 html{
@@ -88,8 +91,8 @@ section .infos{
     border: 1px solid var(--border-color);
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
-    grid-template-rows: repeat(auto-fill,minmax(50px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(var(--cell-size),1fr));
+    grid-template-rows: repeat(auto-fill,minmax(var(--cell-size),1fr));
     overflow: hidden;
     touch-action: none;
 }
@@ -126,4 +129,10 @@ section .infos{
 
 .modals .game-over{
     display: none;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --cell-size: 25px;
+    }
 }

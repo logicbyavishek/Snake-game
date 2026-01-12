@@ -8,8 +8,21 @@ const HighScoreElement = document.querySelector('#high-score');
 const ScoreElement = document.querySelector('#score');
 const TimeElement = document.querySelector('#time');
 
-const blockHeight = 50;
-const blockWidth = 50;
+function getCellSize() {
+    return parseInt(
+        getComputedStyle(document.documentElement)
+            .getPropertyValue("--cell-size")
+    );
+}
+
+let blockSize = getCellSize();
+const blockHeight = blockSize;
+const blockWidth = blockSize;
+
+window.addEventListener("resize", () => {
+    blockSize = getCellSize();
+});
+
 
 let highScore = localStorage.getItem("highScore")||0; //highScore feth through local storage if unidifined then set 0 .
 HighScoreElement.innerText=highScore; //HighScore Visualise
