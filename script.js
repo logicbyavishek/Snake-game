@@ -68,6 +68,20 @@ function renderSnake(){
         return;
     }
 
+        // self collision logic
+    for (let i = 0; i < snake.length; i++) {
+        if (head.x === snake[i].x && head.y === snake[i].y) {
+            clearInterval(IntervalId);
+            clearInterval(TimerIntervalId);
+
+            modal.style.display = "flex";
+            StartGameModal.style.display = "none";
+            GameOverModal.style.display = "flex";
+            return;
+        }
+    }
+
+
     // food consume & length increase logic
     if(head.x === food.x && head.y === food.y){
         blocks[`${food.x}-${food.y}`].classList.remove("food");
@@ -100,6 +114,8 @@ function renderSnake(){
 }
 
 function restartGame(){
+
+    
 
     // reset score & Time
     score=0;
@@ -153,14 +169,57 @@ StartButton.addEventListener("click",()=>{ //start button click through event li
 
 RestartButton.addEventListener("click",restartGame) // Restart button click through event listener
 
-addEventListener("keydown",(event)=>{   // button click and snake move through keydown eventlistener
-    if(event.key === "ArrowUp"){
-        direction = "up";
-    }else if(event.key === "ArrowDown"){
-        direction = "down";
-    }else if(event.key === "ArrowLeft"){
-        direction = "left";
-    }else if(event.key === "ArrowRight"){
-        direction = "right";
+const oppositeDirection = {
+    up: "down",
+    down: "up",
+    left: "right",
+    right: "left"
+};
+
+addEventListener("keydown", (event) => {
+    let newDirection = null;
+
+    if (event.key === "ArrowUp") newDirection = "up";
+    else if (event.key === "ArrowDown") newDirection = "down";
+    else if (event.key === "ArrowLeft") newDirection = "left";
+    else if (event.key === "ArrowRight") newDirection = "right";
+
+    if (newDirection && oppositeDirection[direction] !== newDirection) {
+        direction = newDirection;
     }
-})
+});
+
+
+
+// MOBILE 
+
+    let startX = 0;
+    let startY = 0;
+
+    board.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+    });
+
+    board.addEventListener("touchend", (e) => {
+        const touch = e.changedTouches[0];
+        const diffX = touch.clientX - startX;
+        const diffY = touch.clientY - startY;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            // horizontal swipe
+            if (diffX > 30 && oppositeDirection[direction] !== "right") {
+                direction = "right";
+            } else if (diffX < -30 && oppositeDirection[direction] !== "left") {
+                direction = "left";
+            }
+        } else {
+            // vertical swipe
+            if (diffY > 30 && oppositeDirection[direction] !== "down") {
+                direction = "down";
+            } else if (diffY < -30 && oppositeDirection[direction] !== "up") {
+                direction = "up";
+            }
+        }
+    });
