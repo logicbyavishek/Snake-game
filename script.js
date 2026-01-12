@@ -124,8 +124,9 @@ function renderSnake(){
 }
 
 function restartGame(){
-
-    
+    // past Interval clear Out
+    clearInterval(IntervalId);
+    clearInterval(TimerIntervalId);
 
     // reset score & Time
     score=0;
@@ -155,6 +156,21 @@ function restartGame(){
     direction ="down"; // add hard code after restart button snake go in down direction
 
     IntervalId=setInterval(() => {renderSnake()}, 300); // fps set in 1 second 3 frame appear 
+
+    TimerIntervalId=setInterval(() => { // time screening logic created
+        let [min,sec]=time.split("-").map(Number);
+
+        if(sec==59){
+            min+=1;
+            sec=0
+        }else{
+            sec+=1;
+        }
+
+        time =`${min}-${sec}`;
+        TimeElement.innerText=time;
+
+    }, 1000);
 }
 
 StartButton.addEventListener("click",()=>{ //start button click through event listener
