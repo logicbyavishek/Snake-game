@@ -14,6 +14,7 @@ body {
     --bg-primary-color: #141414;
     --snake-color: #00FF00;
     --food-color: #FF0000;
+    --bg-modals-color:rgba(22, 22, 22, 0.911);
 
     /* Text color */
     --text-primary-color: #f2f2f2;
@@ -49,6 +50,18 @@ main,
 section{
     height: 100%;
     width: 100%;
+}
+
+.btn{
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover{
+    transform: scale(1.1);
 }
 
 section{
@@ -91,4 +104,26 @@ section .infos{
 
 .food{
     background-color: var(--food-color);
+}
+
+.modals{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modals .start-game, .modals .game-over{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.modals .game-over{
+    display: none;
 }

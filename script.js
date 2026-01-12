@@ -1,4 +1,10 @@
 const board = document.querySelector('.board');
+const StartButton = document.querySelector('.btn-start');
+const modal = document.querySelector('.modals');
+const StartGameModal=document.querySelector('.start-game');
+const GameOverModal = document.querySelector('.game-over');
+const RestartButton = document.querySelector('.btn-restart');
+
 const blockHeight = 50;
 const blockWidth = 50;
 
@@ -41,8 +47,12 @@ function renderSnake(){
     }
 
     if(head.x < 0 || head.y < 0 || head.x >= rows || head.y >= cols){
-        alert("Game Over");
         clearInterval(IntervalId);
+        modal.style.display="flex";
+        StartGameModal.style.display="none";
+        GameOverModal.style.display="flex";
+
+        return;
     }
 
     if(head.x === food.x && head.y === food.y){
@@ -68,6 +78,10 @@ function renderSnake(){
 //     renderSnake();
 // },300);
 
+StartButton.addEventListener("click",()=>{
+    modal.style.display="none";
+    IntervalId=setInterval(() => {renderSnake()}, 300);
+})
 
 addEventListener("keydown",(event)=>{
     if(event.key === "ArrowUp"){
