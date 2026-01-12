@@ -71,9 +71,6 @@ function renderSnake(){
         // self collision logic
     for (let i = 0; i < snake.length; i++) {
         if (head.x === snake[i].x && head.y === snake[i].y) {
-            clearInterval(IntervalId);
-            clearInterval(TimerIntervalId);
-
             modal.style.display = "flex";
             StartGameModal.style.display = "none";
             GameOverModal.style.display = "flex";
