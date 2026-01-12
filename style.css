@@ -91,6 +91,7 @@ section .infos{
     grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
     grid-template-rows: repeat(auto-fill,minmax(50px,1fr));
     overflow: hidden;
+    touch-action: none;
 }
 
 .block{

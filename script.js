@@ -193,6 +193,8 @@ addEventListener("keydown", (event) => {
     let startX = 0;
     let startY = 0;
 
+    board.addEventListener("touchmove",(e) => e.preventDefault(),{ passive: false });
+
     board.addEventListener("touchstart", (e) => {
         const touch = e.touches[0];
         startX = touch.clientX;
