@@ -38,7 +38,6 @@ for(let row = 0; row < rows; row++){
         const block = document.createElement('div');
         block.classList.add('block');
         board.appendChild(block);
-        block.innerText = `${row}-${col}`;
         blocks[`${row}-${col}`] = block;
     }
 }
@@ -136,7 +135,7 @@ StartButton.addEventListener("click",()=>{ //start button click through event li
     modal.style.display="none"; // start display remove and game appear logic
     IntervalId=setInterval(() => {renderSnake()}, 300); // fps set in 1 second 3 frame appear
     
-    TimerIntervalId=setInterval(() => {
+    TimerIntervalId=setInterval(() => { // time screening logic created
         let [min,sec]=time.split("-").map(Number);
 
         if(sec==59){
