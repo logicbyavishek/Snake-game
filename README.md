@@ -41,6 +41,7 @@ No external libraries or frameworks used.
 
 ### Mobile
 
+
 * 👉 Swipe Right – Move Right
 * 👈 Swipe Left – Move Left
 * 👆 Swipe Up – Move Up
