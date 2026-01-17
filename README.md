@@ -1,4 +1,4 @@
-# 🐍 Snake Game (JavaScript DOM Based)
+# 🐍  Snake Game (JavaScript DOM Based)
 
 A classic **Snake Game** built using **HTML, CSS, and Vanilla JavaScript**, implemented with a DOM-based grid system. The project focuses on **clean game logic, state handling, and multi-device controls** (keyboard + mobile swipe).
 
